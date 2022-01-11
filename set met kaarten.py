@@ -1,5 +1,4 @@
 import random
-
 bestaandeKleuren = ['harten', 'klaveren', 'schoppen', 'ruiten', 'joker']
 soorten = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "boer", "vrouw", "heer", "aas"]
 deck = []
@@ -16,5 +15,4 @@ for i in range(47):
     else:
         toevoegen = cardColor, cardNumber
         deck.append(toevoegen)
-
 print(deck)
