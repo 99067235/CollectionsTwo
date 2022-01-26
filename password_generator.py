@@ -5,43 +5,63 @@ lowerCaseLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
 numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 specialCharacters = ['@', '#', '$', '%', '&', '_', '?']
 password = []
+passwordSmallCharacters = []
+totalOfCharacters = 0
+
 def listToStringWithoutBrackets(password):
     return str(password).replace('[','').replace(']','').replace("'", '').replace(",", '').replace(' ', '')
 
+def listToStringWithoutBrackets(passwordSmallCharacters):
+    return str(passwordSmallCharacters).replace('[','').replace(']','').replace("'", '').replace(",", '').replace(' ', '')
+    
+
 def numberChoice():
     global l
+    global totalOfCharacters
     numberCheck = random.randint(4,7)
     for l in range(numberCheck):
         numberChoice = random.choice(numbers)
         password.append(numberChoice)
+        totalOfCharacters += 1
     chooseSpecialCharacters()
+
 
 def chooseCapitalLetter():
     global i
+    global totalOfCharacters
     hoofdletterCheck = random.randint(2,6)
     for i in range(hoofdletterCheck):
         uppercaseChoice = random.choice(upperCaseLetters)
         password.append(uppercaseChoice)
+        totalOfCharacters += 1
     numberChoice()
     
+
 def shuffle():
     random.shuffle(password)
 
+
 def chooseSpecialCharacters():
     global d
+    global totalOfCharacters
     for d in range(3):
         specialCharacterChoice = random.choice(specialCharacters)
         password.append(specialCharacterChoice)
+        totalOfCharacters += 1
+    chooseLowercaseLetter()
+    
     
 def chooseLowercaseLetter():
     global f
-    for f in range(8):
+    global totalOfCharacters
+    global passwordSmallCharacters
+    amountOfLowercaseLetters = 24 - len(password)
+    for f in range(amountOfLowercaseLetters):
         lowercaseLetterChoice = random.choice(lowerCaseLetters)
-        password.append(lowercaseLetterChoice)
-    chooseSpecialCharacters()
-
-print(password)
-
-
+        passwordSmallCharacters.append(lowercaseLetterChoice)
+        totalOfCharacters += 1
+        random.shuffle(passwordSmallCharacters)
+    print(listToStringWithoutBrackets(passwordSmallCharacters + password))
+  
 
 chooseCapitalLetter()
