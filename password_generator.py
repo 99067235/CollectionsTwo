@@ -6,6 +6,7 @@ numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 specialCharacters = ['@', '#', '$', '%', '&', '_', '?']
 password = []
 passwordSmallCharacters = []
+LastSmallCharacters = []
 totalOfCharacters = 0
 
 def listToStringWithoutBrackets(password):
@@ -13,6 +14,9 @@ def listToStringWithoutBrackets(password):
 
 def listToStringWithoutBrackets(passwordSmallCharacters):
     return str(passwordSmallCharacters).replace('[','').replace(']','').replace("'", '').replace(",", '').replace(' ', '')
+
+def listToStringWithoutBrackets(LastSmallCharacters):
+    return str(LastSmallCharacters).replace('[','').replace(']','').replace("'", '').replace(",", '').replace(' ', '')
     
 
 def numberChoice():
@@ -53,15 +57,24 @@ def chooseSpecialCharacters():
     
 def chooseLowercaseLetter():
     global f
+    global k
     global totalOfCharacters
     global passwordSmallCharacters
+    global LastSmallCharacters
     amountOfLowercaseLetters = 24 - len(password)
-    for f in range(amountOfLowercaseLetters):
+    half = amountOfLowercaseLetters // 2
+    for f in range(half):
         lowercaseLetterChoice = random.choice(lowerCaseLetters)
         passwordSmallCharacters.append(lowercaseLetterChoice)
         totalOfCharacters += 1
         random.shuffle(passwordSmallCharacters)
-    print(listToStringWithoutBrackets(passwordSmallCharacters + password))
+    for k in range(half):
+        lowercaseLetterChoice = random.choice(lowerCaseLetters)
+        LastSmallCharacters.append(lowercaseLetterChoice)
+        totalOfCharacters += 1
+        random.shuffle(LastSmallCharacters)
+    print("password has been generated")
+    print(listToStringWithoutBrackets(passwordSmallCharacters + password + LastSmallCharacters))
   
 
 chooseCapitalLetter()
