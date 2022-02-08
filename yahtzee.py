@@ -12,9 +12,6 @@ houden3 = "Y"
 houden4 = "Y"
 houden5 = "Y"
 
-def dobbelKiezen():
-    getalkiezen = random.randint(1,6)
-    return getalkiezen
 
 def keep():
     global houden1
@@ -29,6 +26,12 @@ def keep():
     houden4 = input("Wil je dobbelsteen 4 houden? Y/N ").upper()
     houden5 = input("Wil je dobbelsteen 5 houden? Y/N ").upper()
 
+
+def dobbelKiezen():
+    getalkiezen = random.randint(1,6)
+    return getalkiezen
+
+
 def gooien():
     global dobbel1
     global dobbel2
@@ -36,7 +39,7 @@ def gooien():
     global dobbel4
     global dobbel5
     
-    input("Druk op enter om de dobbelstenen te gooien")
+    input("Druk op enter om de dobbelstenen te gooien ")
     dobbel1 = dobbelKiezen()
     dobbel2 = dobbelKiezen()
     dobbel3 = dobbelKiezen()
@@ -50,4 +53,6 @@ def gooien():
     print("dobbelsteen 5:", dobbel5)
 
     keep()
-gooien()
+
+for i in range(3):
+    gooien()
