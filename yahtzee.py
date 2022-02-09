@@ -1,3 +1,4 @@
+from logging.config import valid_ident
 import random
 dobbel1 = 0
 dobbel2 = 0
@@ -5,13 +6,22 @@ dobbel3 = 0
 dobbel4 = 0
 dobbel5 = 0
 
-#--dobbelstenen houden--#
+
 houden1 = "Y"
 houden2 = "Y"
 houden3 = "Y"
 houden4 = "Y"
 houden5 = "Y"
 
+def besteden():
+    print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
+    input("Waar wil je je punten aan uitgeven? ")
+    try:
+        besteed = input("typ hier een nummer: ")
+    except ValueError:
+        print("vul a.u.b. een nummer in")
+    if besteed == 1:
+        
 
 def keep():
     global houden1
