@@ -1,27 +1,193 @@
-from logging.config import valid_ident
 import random
 dobbel1 = 0
 dobbel2 = 0
 dobbel3 = 0
 dobbel4 = 0
 dobbel5 = 0
+rondes = 0
+score = {
+    "enen": 0,
+    "tweeën": 0,
+    "drieën": 0,
+    "vieren": 0,
+    "vijven": 0,
+    "zessen": 0,
+}
 
 
-houden1 = "Y"
-houden2 = "Y"
-houden3 = "Y"
-houden4 = "Y"
-houden5 = "Y"
+
+def enenBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "enen" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 1:
+            dobbelscore += 1
+        if dobbel2 == 1:
+            dobbelscore += 1
+        if dobbel3 == 1:
+            dobbelscore += 1
+        if dobbel4 == 1:
+            dobbelscore += 1
+        if dobbel5 == 1:
+            dobbelscore += 1
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
+def tweeënBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "tweeën" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 2:
+            dobbelscore += 2
+        if dobbel2 == 2:
+            dobbelscore += 2
+        if dobbel3 == 2:
+            dobbelscore += 2
+        if dobbel4 == 2:
+            dobbelscore += 2
+        if dobbel5 == 2:
+            dobbelscore += 2
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
+def drieënBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "drieën" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 3:
+            dobbelscore += 3
+        if dobbel2 == 3:
+            dobbelscore += 3
+        if dobbel3 == 3:
+            dobbelscore += 3
+        if dobbel4 == 3:
+            dobbelscore += 3
+        if dobbel5 == 3:
+            dobbelscore += 3
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
+def vierenBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "vieren" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 4:
+            dobbelscore += 4
+        if dobbel2 == 4:
+            dobbelscore += 4
+        if dobbel3 == 4:
+            dobbelscore += 4
+        if dobbel4 == 4:
+            dobbelscore += 4
+        if dobbel5 == 4:
+            dobbelscore += 4
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
+def vijvenBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "vijven" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 5:
+            dobbelscore += 5
+        if dobbel2 == 5:
+            dobbelscore += 5
+        if dobbel3 == 5:
+            dobbelscore += 5
+        if dobbel4 == 5:
+            dobbelscore += 5
+        if dobbel5 == 5:
+            dobbelscore += 5
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
+def zessenBerekenen():
+    global rondes
+    global dobbelscore
+    if score == "vieren" > 0:
+        print("Deze is al een keer gebruikt, kies aub een andere")
+        besteden()
+    else:
+        dobbelscore = 0
+        if dobbel1 == 6:
+            dobbelscore += 6
+        if dobbel2 == 6:
+            dobbelscore += 6
+        if dobbel3 == 6:
+            dobbelscore += 6
+        if dobbel4 == 6:
+            dobbelscore += 6
+        if dobbel5 == 6:
+            dobbelscore += 6
+        print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
+        zekerWeten = input("Typ hier uw antwoord: ").upper()
+        if zekerWeten == "Y":
+            print()
+        else:
+            besteden()
+    rondes += 1
 
 def besteden():
     print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
-    input("Waar wil je je punten aan uitgeven? ")
+    print("Waar wil je je punten aan uitgeven? ")
     try:
-        besteed = input("typ hier een nummer: ")
+        besteed = int(input("typ hier een nummer: "))
+        if besteed == 1:
+            enenBerekenen()
+        elif besteed == 2:
+            tweeënBerekenen()
+        elif besteed == 3:
+            drieënBerekenen()
+        elif besteed == 4:
+            vierenBerekenen()
+        elif besteed == 5:
+            vijvenBerekenen()
+        elif besteed == 6:
+            zessenBerekenen()
     except ValueError:
         print("vul a.u.b. een nummer in")
-    if besteed == 1:
-        
+        besteden()
+
 
 def keep():
     global houden1
@@ -48,21 +214,48 @@ def gooien():
     global dobbel3
     global dobbel4
     global dobbel5
+    global i
     
     input("Druk op enter om de dobbelstenen te gooien ")
-    dobbel1 = dobbelKiezen()
-    dobbel2 = dobbelKiezen()
-    dobbel3 = dobbelKiezen()
-    dobbel4 = dobbelKiezen()
-    dobbel5 = dobbelKiezen()
-
+    if i == 0:
+        dobbel1 = dobbelKiezen()
+        dobbel2 = dobbelKiezen()
+        dobbel3 = dobbelKiezen()
+        dobbel4 = dobbelKiezen()
+        dobbel5 = dobbelKiezen()
     print("dobbelsteen 1:", dobbel1)
     print("dobbelsteen 2:", dobbel2)
     print("dobbelsteen 3:", dobbel3)
     print("dobbelsteen 4:", dobbel4)
     print("dobbelsteen 5:", dobbel5)
-
+    
     keep()
 
-for i in range(3):
-    gooien()
+    if houden1 == "Y":
+        pass
+    else:
+        dobbel1 = dobbelKiezen()
+    if houden2 == "Y":
+        pass
+    else:
+        dobbel2 = dobbelKiezen()
+    if houden3 == "Y":
+        pass
+    else:
+        dobbel3 = dobbelKiezen()
+    if houden4 == "Y":
+        pass
+    else:
+        dobbel4 = dobbelKiezen()
+    if houden5 == "Y":
+        pass
+    else:
+        dobbel5 = dobbelKiezen()
+
+
+while rondes < 4:
+    for i in range(3):
+        gooien()
+    besteden()
+    
+print(dobbelscore)
