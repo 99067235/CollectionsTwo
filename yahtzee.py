@@ -5,6 +5,7 @@ dobbel3 = 0
 dobbel4 = 0
 dobbel5 = 0
 rondes = 0
+finalscore = 0
 score = {
     "enen": 0,
     "tweeën": 0,
@@ -13,12 +14,13 @@ score = {
     "vijven": 0,
     "zessen": 0,
 }
-
+unusedCombinations = ["Enen", "Tweën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
 
 
 def enenBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "enen" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -37,13 +39,18 @@ def enenBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Enen")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
+
+
 def tweeënBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "tweeën" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -62,13 +69,18 @@ def tweeënBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Tweën")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
+
+
 def drieënBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "drieën" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -87,13 +99,16 @@ def drieënBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Drieën")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
 def vierenBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "vieren" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -112,13 +127,18 @@ def vierenBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Vieren")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
+
+
 def vijvenBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "vijven" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -137,13 +157,18 @@ def vijvenBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Vijven")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
+
+
 def zessenBerekenen():
     global rondes
     global dobbelscore
+    global finalscore
     if score == "vieren" > 0:
         print("Deze is al een keer gebruikt, kies aub een andere")
         besteden()
@@ -162,10 +187,13 @@ def zessenBerekenen():
         print("Weet u zeker dat u deze wilt gebruiken voor", dobbelscore, "punten? ")
         zekerWeten = input("Typ hier uw antwoord: ").upper()
         if zekerWeten == "Y":
-            print()
+            unusedCombinations.remove("Zessen")
+            finalscore += dobbelscore
         else:
+            print("Oke, kies dan een andere.")
             besteden()
     rondes += 1
+
 
 def besteden():
     print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
@@ -184,9 +212,28 @@ def besteden():
             vijvenBerekenen()
         elif besteed == 6:
             zessenBerekenen()
+        elif besteed == 12:
+            chance()
+        elif besteed == 13:
+            yahtzee()
     except ValueError:
         print("vul a.u.b. een nummer in")
         besteden()
+
+def chance():
+    chance = dobbel1 + dobbel2 + dobbel3 + dobbel4 + dobbel5
+    print(chance)
+def yahtzee():
+    global dobbelscore
+    dobbellist = [dobbel1, dobbel2, dobbel3, dobbel4, dobbel5]
+    check = all(element == dobbellist[0] for element in dobbellist)
+    if check == True:
+        print("Gefeliciteerd! U heeft yahtzee gegooid!")
+        dobbelscore += 50
+    else:
+        print("Helaas heeft u nu geen yahtzee, probeer het opnieuw")
+        besteden()
+
 
 
 def keep():
