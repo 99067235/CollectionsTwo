@@ -1,3 +1,4 @@
+import numbers
 import random
 from tkinter.tix import Tree
 dobbel1 = 0
@@ -32,7 +33,11 @@ bottomScore = {
     "Yahtzee": 0
 }
 unusedCombinations = ["Enen", "Tweën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
+<<<<<<< HEAD
 totalThrown = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+=======
+totaalGegooid = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+>>>>>>> 1d3c599c87ae927f38351b0b1994f95cc8cbca8d
 amountOfDices = {"enen": 0, "tweeën": 0, "drieën": 0, "vieren": 0, "vijven": 0, "zessen": 0,}
 
 def enenBerekenen():
@@ -315,9 +320,13 @@ def fullHouse():
         
 
 def threeOfAKind():
+<<<<<<< HEAD
     global totalThrown
     global finalscore
     totalThrown = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel3"] +  gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+=======
+    dobbelscore = 0
+>>>>>>> 1d3c599c87ae927f38351b0b1994f95cc8cbca8d
     for item in gegooideStenen.values():
         if item == 1:
             amountOfDices["enen"] += 1
@@ -347,6 +356,7 @@ def threeOfAKind():
     else:
         print("Helaas heeft u geen Three of a kind gegooid. Kies een andere.")
         besteden()
+<<<<<<< HEAD
     print("Weet u zeker dat u deze wilt gebruiken voor", totalThrown, "punten? ")
     zekerWeten = input("Typ hier uw antwoord: ").upper()
     if zekerWeten == "Y":
@@ -382,6 +392,8 @@ def yahtzee():
         print("Helaas heeft u nu geen yahtzee gegooid, probeer het opnieuw")
         besteden()
 
+=======
+>>>>>>> 1d3c599c87ae927f38351b0b1994f95cc8cbca8d
 def besteden():
     print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
     print("Waar wil je je punten aan uitgeven? ")
