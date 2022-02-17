@@ -1,4 +1,5 @@
 import random
+from tkinter.tix import Tree
 dobbel1 = 0
 dobbel2 = 0
 dobbel3 = 0
@@ -13,7 +14,7 @@ gegooideStenen = {
     "dobbel4": 0,
     "dobbel5": 0,
 }
-score = {
+topscore = {
     "enen": 0,
     "tweeën": 0,
     "drieën": 0,
@@ -21,14 +22,24 @@ score = {
     "vijven": 0,
     "zessen": 0,
 }
+bottomScore = {
+    "ThreeOfAKind": 0,
+    "FourOfAKind": 0,
+    "FullHouse": 0,
+    "SmallStraight": 0,
+    "LargeStraight": 0,
+    "Chance": 0,
+    "Yahtzee": 0
+}
 unusedCombinations = ["Enen", "Tweën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
-
+totalThrown = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+amountOfDices = {"enen": 0, "tweeën": 0, "drieën": 0, "vieren": 0, "vijven": 0, "zessen": 0,}
 
 def enenBerekenen():
     global rondes
     global dobbelscore
     global finalscore
-    global score
+    global topscore
     dobbelscore = 0
     if gegooideStenen["dobbel1"] == 1:
         dobbelscore += 1
@@ -45,7 +56,8 @@ def enenBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Enen")
         finalscore += dobbelscore
-        score["enen"] += dobbelscore
+        topscore["enen"] += dobbelscore
+        
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -71,6 +83,7 @@ def tweeënBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Tweën")
         finalscore += dobbelscore
+        topscore["tweeën"] += dobbelscore
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -96,6 +109,7 @@ def drieënBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Drieën")
         finalscore += dobbelscore
+        topscore["drieën"] += dobbelscore
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -121,6 +135,7 @@ def vierenBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Vieren")
         finalscore += dobbelscore
+        topscore["vieren"] += dobbelscore
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -146,6 +161,7 @@ def vijvenBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Vijven")
         finalscore += dobbelscore
+        topscore["vijven"] += dobbelscore
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -171,6 +187,7 @@ def zessenBerekenen():
     if zekerWeten == "Y":
         unusedCombinations.remove("Zessen")
         finalscore += dobbelscore
+        topscore["zessen"] += dobbelscore
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -184,6 +201,7 @@ def trueSmallStraight():
         if zekerWeten == "Y":
             finalscore += 30
             unusedCombinations.remove("SmallStraight")
+            bottomScore["SmallStraight"] += 1
         else:
             print("Oke, kies dan een andere.")
             besteden()
@@ -205,59 +223,165 @@ def smallStraight():
         print("U heeft helaas geen small straight gegooid, kies een andere.")
         besteden()
 
-def trueLargeStraight():
-    global finalscore
-    if largeStraightScore == True:
-        print("Deze is 40 punten waard, wilt u deze gebruiken?")
-        zekerWeten = input("Typ hier uw antwoord Y/N: ").upper()
-        if zekerWeten == "Y":
-            finalscore += 40
-            unusedCombinations.remove("LargeStraight")
-        else:
-            print("Oke, kies dan een andere.")
-            besteden()
-
 def largeStraight():
     global finalscore
     global largeStraightScore
     largeStraightScore = False
     if 1 in gegooideStenen.values() and 2 in gegooideStenen.values() and 3 in gegooideStenen.values() and 4 in gegooideStenen.values() and 5 in gegooideStenen.values():
-        largeStraightScore = True
-        trueLargeStraight()
+        print("Deze is 40 punten waard, wilt u deze gebruiken?")
+        zekerWeten = input("Typ hier uw antwoord Y/N: ").upper()
+        if zekerWeten == "Y":
+            finalscore += 40
+            unusedCombinations.remove("LargeStraight")
+            bottomScore["LargeStraight"] += 1
+        else:
+            print("Oke, kies dan een andere.")
+            besteden()
     else:
         print("U heeft helaas geen large straight gegooid, kies een andere.")
         besteden()
+        
+def fourOfAKind():
+    global finalscore
+    totalThrown = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel3"] + gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+    for item in gegooideStenen.values():
+        if item == 1:
+            amountOfDices["enen"] += 1
+        elif item == 2:
+            amountOfDices["tweeën"] += 1
+        elif item == 3:
+            amountOfDices["drieën"] += 1
+        elif item == 4:
+            amountOfDices["vieren"] += 1
+        elif item == 5:
+            amountOfDices["vijven"] += 1
+        elif item == 6:
+            amountOfDices["zessen"] += 1
+    
+    if amountOfDices["enen"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    elif amountOfDices["tweeën"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    elif amountOfDices["drieën"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    elif amountOfDices["vieren"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    elif amountOfDices["vijven"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    elif amountOfDices["zessen"] >= 4:
+        print("U hebt Four of a kind gegooid!")
+    else:
+        print("Helaas heeft u geen Four of a kind gegooid. Kies een andere.")
+        besteden()
+    print("Weet u zeker dat u deze wilt gebruiken voor", totalThrown, "punten? ")
+    zekerWeten = input("Typ hier uw antwoord: ").upper()
+    if zekerWeten == "Y":
+        unusedCombinations.remove("FourOfAKind")
+        bottomScore["FourOfAKind"] += 1
+        finalscore += totalThrown
+    else:
+        print("Oke, kies dan een andere.")
+        besteden()
+
+def fullHouse():
+    global i
+    ### checkt van welke dobbel er hoeveel zijn
+    for item in gegooideStenen.values():
+        if item == 1:
+            amountOfDices["enen"] += 1
+        elif item == 2:
+            amountOfDices["tweeën"] += 1
+        elif item == 3:
+            amountOfDices["drieën"] += 1
+        elif item == 4:
+            amountOfDices["vieren"] += 1
+        elif item == 5:
+            amountOfDices["vijven"] += 1
+        elif item == 6:
+            amountOfDices["zessen"] += 1
+    
+    if amountOfDices["drieën"] == 3:
+        for key, value in gegooideStenen.items():
+            if value == 3:
+                del gegooideStenen[key]
+                break
+    # checken of alle values in gegooidestenen gelijk zijn
+
+        
+        
+        
+        
+        
+        
 
 def threeOfAKind():
-    dobbelscore = 0
-    enen = gegooideStenen.count(1)
-    tweeën = gegooideStenen.count(2)
-    drieën = gegooideStenen.count(3)
-    vieren = gegooideStenen.count(4)
-    vijven = gegooideStenen.count(5)
-    zessen = gegooideStenen.count(6)
-    if enen >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif tweeën >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif drieën >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif vieren >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif vijven >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif zessen >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
+    global totalThrown
+    global finalscore
+    totalThrown = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel3"] +  gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+    for item in gegooideStenen.values():
+        if item == 1:
+            amountOfDices["enen"] += 1
+        elif item == 2:
+            amountOfDices["tweeën"] += 1
+        elif item == 3:
+            amountOfDices["drieën"] += 1
+        elif item == 4:
+            amountOfDices["vieren"] += 1
+        elif item == 5:
+            amountOfDices["vijven"] += 1
+        elif item == 6:
+            amountOfDices["zessen"] += 1
+    
+    if amountOfDices["enen"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["tweeën"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["drieën"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["vieren"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["vijven"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["zessen"] >= 3:
+        print("U hebt Three of a kind gegooid!")
     else:
-        print("U heeft helaas geen Three of a kind gegooid, kies een andere.")
+        print("Helaas heeft u geen Three of a kind gegooid. Kies een andere.")
         besteden()
-    print(total)
+    print("Weet u zeker dat u deze wilt gebruiken voor", totalThrown, "punten? ")
+    zekerWeten = input("Typ hier uw antwoord: ").upper()
+    if zekerWeten == "Y":
+        unusedCombinations.remove("ThreeOfAKind")
+        bottomScore["ThreeOfAKind"] += 1
+        finalscore += totalThrown
+    else:
+        print("Oke, kies dan een andere.")
+        besteden()
+
+def chance():
+    global finalscore
+    print("Deze is", totalThrown, "punten waard, wilt u deze gebruiken?")
+    zekerWeten = input("Typ hier uw antwoord Y/N: ")
+    if zekerWeten == "Y":
+        finalscore += totalThrown
+        unusedCombinations.remove("Chance")
+        bottomScore["Chance"] += 1
+    else:
+        print("Oke, kies dan een andere.")
+        besteden()
+
+def yahtzee():
+    global finalscore
+    if gegooideStenen["dobbel1"] == gegooideStenen["dobbel2"] == gegooideStenen["dobbel3"] == gegooideStenen["dobbel4"] == gegooideStenen["dobbel5"]:
+        print("Gefeliciteerd! U heeft yahtzee gegooid!")
+        weetZeker = input("Deze is 50 punten waard, wilt u deze gebruiken? Y/N ").upper()
+        if weetZeker == "Y":
+            unusedCombinations.remove("Yahtzee")
+            bottomScore["Yahtzee"] += 1
+            finalscore += 50
+    else:
+        print("Helaas heeft u nu geen yahtzee gegooid, probeer het opnieuw")
+        besteden()
+
 def besteden():
     print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
     print("Waar wil je je punten aan uitgeven? ")
@@ -277,6 +401,10 @@ def besteden():
             zessenBerekenen()
         elif besteed == 7 and "ThreeOfAKind" in unusedCombinations:
             threeOfAKind()
+        elif besteed == 8 and "FourOfAKind" in unusedCombinations:
+            fourOfAKind()
+        elif besteed == 9 and "FullHouse" in unusedCombinations:
+            fullHouse()
         elif besteed == 10 and "SmallStraight" in unusedCombinations:
             smallStraight()
         elif besteed == 11 and "LargeStraight" in unusedCombinations:
@@ -290,21 +418,6 @@ def besteden():
             besteden()
     except ValueError:
         print("vul a.u.b. een nummer in")
-        besteden()
-
-def chance():
-    chance = dobbel1 + dobbel2 + dobbel3 + dobbel4 + dobbel5
-    print(chance)
-
-def yahtzee():
-    global dobbelscore
-    dobbellist = [dobbel1, dobbel2, dobbel3, dobbel4, dobbel5]
-    check = all(element == dobbellist[0] for element in dobbellist)
-    if check == True:
-        print("Gefeliciteerd! U heeft yahtzee gegooid!")
-        dobbelscore += 50
-    else:
-        print("Helaas heeft u nu geen yahtzee gegooid, probeer het opnieuw")
         besteden()
 
 def keep():
@@ -370,5 +483,9 @@ while rondes < 4:
     for i in range(3):
         gooien()
     besteden()
+    print(topscore)
+    print(bottomScore)
+    print("Huidige score:", finalscore)
+
     
 print(finalscore)
