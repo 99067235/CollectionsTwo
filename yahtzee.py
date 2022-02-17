@@ -1,3 +1,4 @@
+import numbers
 import random
 dobbel1 = 0
 dobbel2 = 0
@@ -22,7 +23,8 @@ score = {
     "zessen": 0,
 }
 unusedCombinations = ["Enen", "Tweën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
-
+totaalGegooid = gegooideStenen["dobbel1"] + gegooideStenen["dobbel2"] + gegooideStenen["dobbel4"] + gegooideStenen["dobbel5"]
+amountOfDices = {"enen": 0, "tweeën": 0, "drieën": 0, "vieren": 0, "vijven": 0, "zessen": 0,}
 
 def enenBerekenen():
     global rondes
@@ -230,34 +232,35 @@ def largeStraight():
 
 def threeOfAKind():
     dobbelscore = 0
-    enen = gegooideStenen.count(1)
-    tweeën = gegooideStenen.count(2)
-    drieën = gegooideStenen.count(3)
-    vieren = gegooideStenen.count(4)
-    vijven = gegooideStenen.count(5)
-    zessen = gegooideStenen.count(6)
-    if enen >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif tweeën >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif drieën >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif vieren >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif vijven >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
-    elif zessen >= 3:
-        total = sum(gegooideStenen)
-        dobbelscore += total
+    for item in gegooideStenen.values():
+        if item == 1:
+            amountOfDices["enen"] += 1
+        elif item == 2:
+            amountOfDices["tweeën"] += 1
+        elif item == 3:
+            amountOfDices["drieën"] += 1
+        elif item == 4:
+            amountOfDices["vieren"] += 1
+        elif item == 5:
+            amountOfDices["vijven"] += 1
+        elif item == 6:
+            amountOfDices["zessen"] += 1
+    
+    if amountOfDices["enen"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["tweeën"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["drieën"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["vieren"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["vijven"] >= 3:
+        print("U hebt Three of a kind gegooid!")
+    elif amountOfDices["zessen"] >= 3:
+        print("U hebt Three of a kind gegooid!")
     else:
-        print("U heeft helaas geen Three of a kind gegooid, kies een andere.")
+        print("Helaas heeft u geen Three of a kind gegooid. Kies een andere.")
         besteden()
-    print(total)
 def besteden():
     print("Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)")
     print("Waar wil je je punten aan uitgeven? ")
