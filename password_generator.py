@@ -20,7 +20,6 @@ def listToStringWithoutBrackets(LastSmallCharacters):
     
 
 def numberChoice():
-    global l
     global totalOfCharacters
     numberCheck = random.randint(4,7)
     for l in range(numberCheck):
@@ -31,7 +30,6 @@ def numberChoice():
 
 
 def chooseCapitalLetter():
-    global i
     global totalOfCharacters
     hoofdletterCheck = random.randint(2,6)
     for i in range(hoofdletterCheck):
@@ -46,7 +44,6 @@ def shuffle():
 
 
 def chooseSpecialCharacters():
-    global d
     global totalOfCharacters
     for d in range(3):
         specialCharacterChoice = random.choice(specialCharacters)
@@ -56,8 +53,6 @@ def chooseSpecialCharacters():
     
     
 def chooseLowercaseLetter():
-    global f
-    global k
     global totalOfCharacters
     global passwordSmallCharacters
     global LastSmallCharacters
