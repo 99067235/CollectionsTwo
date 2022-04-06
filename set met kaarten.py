@@ -15,4 +15,8 @@ for i in range(47):
     else:
         toevoegen = cardColor, cardNumber
         deck.append(toevoegen)
-print(deck)
+
+for i in range(7):
+    print(deck[i])
+
+print(deck) 
