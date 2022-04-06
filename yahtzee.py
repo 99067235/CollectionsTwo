@@ -142,49 +142,7 @@ def ThreeOrFourOfAKind(besteed, chosenCombination):
     if zekerWeten == "Y":
         allCombinations.pop(besteed - 1)
         unusedCombinations.pop(besteed - 1)
-        bottomScore[chosenCombination] += 1
-        finalscore += totalThrown
-    else:
-        print("Oke, kies dan een andere.")
-        besteden()
-
-def fourOfAKind():
-    global finalscore, totalThrown
-    for item in gegooideStenen.values():
-        if item == 1:
-            amountOfDices["enen"] += 1
-        elif item == 2:
-            amountOfDices["tweeën"] += 1
-        elif item == 3:
-            amountOfDices["drieën"] += 1
-        elif item == 4:
-            amountOfDices["vieren"] += 1
-        elif item == 5:
-            amountOfDices["vijven"] += 1
-        elif item == 6:
-            amountOfDices["zessen"] += 1
-    
-    if amountOfDices["enen"] >= 4:
-        pass
-    elif amountOfDices["tweeën"] >= 4:
-        pass
-    elif amountOfDices["drieën"] >= 4:
-        pass
-    elif amountOfDices["vieren"] >= 4:
-        pass
-    elif amountOfDices["vijven"] >= 4:
-        pass
-    elif amountOfDices["zessen"] >= 4:
-        pass
-    else:
-        print("Helaas heeft u geen Four of a kind gegooid. Kies een andere.")
-        besteden()
-    print("Weet u zeker dat u deze wilt gebruiken voor", totalThrown, "punten? ")
-    zekerWeten = input("Typ hier uw antwoord: ").upper()
-    if zekerWeten == "Y":
-        allCombinations.remove("FourOfAKind(8)")
-        unusedCombinations.remove("FourOfAKind")
-        bottomScore["FourOfAKind"] += 1
+        bottomScore[chosenCombination] += totalThrown
         finalscore += totalThrown
     else:
         print("Oke, kies dan een andere.")
@@ -268,48 +226,6 @@ def fullHouse():
     "dobbel5": 0,
 }
 
-def threeOfAKind():
-    totalThrown = sum(gegooideStenen.values())
-    global finalscore
-    for item in gegooideStenen.values():
-        if item == 1:
-            amountOfDices["enen"] += 1
-        elif item == 2:
-            amountOfDices["tweeën"] += 1
-        elif item == 3:
-            amountOfDices["drieën"] += 1
-        elif item == 4:
-            amountOfDices["vieren"] += 1
-        elif item == 5:
-            amountOfDices["vijven"] += 1
-        elif item == 6:
-            amountOfDices["zessen"] += 1
-    
-    if amountOfDices["enen"] >= 3:
-        pass
-    elif amountOfDices["tweeën"] >= 3:
-        pass
-    elif amountOfDices["drieën"] >= 3:
-        pass
-    elif amountOfDices["vieren"] >= 3:
-        pass
-    elif amountOfDices["vijven"] >= 3:
-        pass
-    elif amountOfDices["zessen"] >= 3:
-        pass
-    else:
-        print("Helaas heeft u geen Three of a kind gegooid. Kies een andere.")
-        besteden()
-    print("Weet u zeker dat u deze wilt gebruiken voor", totalThrown, "punten? ")
-    zekerWeten = input("Typ hier uw antwoord: ").upper()
-    if zekerWeten == "Y":
-        allCombinations.remove("ThreeOfAKind(7)")
-        unusedCombinations.remove("ThreeOfAKind")
-        bottomScore["ThreeOfAKind"] += 1
-        finalscore += totalThrown
-    else:
-        print("Oke, kies dan een andere.")
-        besteden()
 
 def chance():
     global finalscore
@@ -484,11 +400,11 @@ def gooien():
     
     input("Druk op enter om de dobbelstenen te gooien ")
     if i == 0:
-        gegooideStenen["dobbel1"] = dobbelKiezen()
-        gegooideStenen["dobbel2"] = dobbelKiezen()
-        gegooideStenen["dobbel3"] = dobbelKiezen()
-        gegooideStenen["dobbel4"] = dobbelKiezen()
-        gegooideStenen["dobbel5"] = dobbelKiezen()
+        gegooideStenen["dobbel1"] = 4
+        gegooideStenen["dobbel2"] = 4
+        gegooideStenen["dobbel3"] = 4
+        gegooideStenen["dobbel4"] = 4
+        gegooideStenen["dobbel5"] = 3
     else:
         pass
 
