@@ -1,22 +1,23 @@
 import random
-bestaandeKleuren = ['harten', 'klaveren', 'schoppen', 'ruiten', 'joker']
-soorten = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "boer", "vrouw", "heer", "aas"]
+bestaandeKleuren = ['harten', 'klaveren', 'schoppen', 'ruiten']
+soorten = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "boer", "vrouw", "heer", "aas"]
+special = ["joker", "joker"]
 deck = []
-jokers = 2
+shuffledDeck = []
 
-for i in range(47):
-    cardColor = random.choice(bestaandeKleuren)
-    cardNumber = random.choice(soorten)
-    if cardColor == "joker" and jokers > 0:
-        jokers -= 1
-        deck.append(cardColor)
-    elif cardColor == 'joker' and jokers == 0:
-        i -= 1
-    else:
-        toevoegen = cardColor, cardNumber
-        deck.append(toevoegen)
+for i in range(len(bestaandeKleuren)):
+    for x in range(len(soorten)):
+        deck.append(bestaandeKleuren[i] + " " + soorten[x])
+for l in range(len(special)):
+    deck.append(special[l])
+for i in range(len(deck)):
+    randomCard = random.choice(deck)
+    deck.remove(randomCard)
+    shuffledDeck.append(randomCard)
+
 
 for i in range(7):
-    print(deck[i])
+    print(f"kaart {i+1}:",shuffledDeck[0])
+    del shuffledDeck[0]
 
-print(deck) 
+print("Deck (47 kaarten):",shuffledDeck)

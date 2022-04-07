@@ -28,8 +28,8 @@ bottomScore = {
     "Chance": 0,
     "Yahtzee": 0
 }
-allCombinations = ["Enen(1)", "Tweën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)", "Een combinatie wegstrepen(14)"]
-unusedCombinations = ["Enen", "Tweën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
+allCombinations = ["Enen(1)", "Tweeën(2)", "Drieën(3)", "Vieren(4)", "vijven(5)", "Zessen(6)", "ThreeOfAKind(7)", "FourOfAKind(8)","FullHouse(9)","SmallStraight(10)","LargeStraight(11)","Chance(12)","Yahtzee(13)", "Een combinatie wegstrepen(14)"]
+unusedCombinations = ["Enen", "Tweeën", "Drieën", "Vieren", "Vijven", "Zessen", "ThreeOfAKind", "FourOfAKind","FullHouse","SmallStraight","LargeStraight","Chance","Yahtzee"]
 amountOfDices = {"enen": 0, "tweeën": 0, "drieën": 0, "vieren": 0, "vijven": 0, "zessen": 0}
 totalThrown = sum(gegooideStenen.values())
 
@@ -336,8 +336,8 @@ def bovenHelft(besteed, besteedString):
     if zekerWeten == "Y":
         unusedCombinations.pop(besteed - 1)
         allCombinations.pop(besteed - 1)
-        finalscore += dobbelscore
-        topscore[besteedString] += dobbelscore
+        finalscore += dobbelscore * besteed
+        topscore[besteedString] += dobbelscore * besteed
     else:
         print("Oke, kies dan een andere.")
         besteden()
@@ -350,7 +350,7 @@ def besteden():
         besteed = int(input("typ hier een nummer: "))
         if besteed == 1 and "Enen" in unusedCombinations:
             bovenHelft(besteed, "enen")
-        elif besteed == 2 and "Tweën" in unusedCombinations:
+        elif besteed == 2 and "Tweeën" in unusedCombinations:
             bovenHelft(besteed, "tweeën")
         elif besteed == 3 and "Drieën" in unusedCombinations:
             bovenHelft(besteed, "drieën")
@@ -400,11 +400,11 @@ def gooien():
     
     input("Druk op enter om de dobbelstenen te gooien ")
     if i == 0:
-        gegooideStenen["dobbel1"] = 4
-        gegooideStenen["dobbel2"] = 4
-        gegooideStenen["dobbel3"] = 4
-        gegooideStenen["dobbel4"] = 4
-        gegooideStenen["dobbel5"] = 3
+        gegooideStenen["dobbel1"] = dobbelKiezen()
+        gegooideStenen["dobbel2"] = dobbelKiezen()
+        gegooideStenen["dobbel3"] = dobbelKiezen()
+        gegooideStenen["dobbel4"] = dobbelKiezen()
+        gegooideStenen["dobbel5"] = dobbelKiezen()
     else:
         pass
 
@@ -438,7 +438,7 @@ def gooien():
         else:
             gegooideStenen["dobbel5"] = dobbelKiezen()
 
-for g in range(13):
+for g in range(5):
     print("------------------------")
     print("Huidige ronde: ", g + 1)
     print("------------------------")
@@ -448,7 +448,10 @@ for g in range(13):
 
     scorekaart()
 
-
+topscoreCheck = sum(topscore.values())
+if topscoreCheck >= 63:
+    finalscore += 35
+    print("U krijgt 35 bonuspunten!")
 print("Dat waren alle rondes, uw eindscore wordt nu berekent.")
 time.sleep(3)
 print("UW eindscore is:", finalscore)
